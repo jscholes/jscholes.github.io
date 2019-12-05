@@ -6,5 +6,32 @@
 	</head>
 	<body>
 		<h1>ARIA Live Region on Page Load</h1>
+		<div id="error-container" aria-live="assertive" aria-atomic="true"></div></div>
+		<script>
+			let errorHeadingText = 'Login failed:';
+			let errorMsgText = `Your email or password is incorrect. Please try again, <a href="../account/login?forgot=true">reset your password</a>, or <a href="../account/create">register for a new account.</a>`;
+
+			function initialiseLiveRegion() {
+				let errorContainer = document.querySelector('#error-container');
+
+				/* create the level 2 heading which will later receive focus */
+				let errorHeading = document.createElement('h2');
+				errorHeading.textContent = errorHeadingText;
+				errorHeading.setAttribute('tabindex', '-1');
+
+				let errorMsg = document.createElement('div');
+				errorMsg.innerHTML = errorMsgText;
+
+				let errorWrapper = document.createElement('div');
+				errorWrapper.appendChild(errorHeading);
+				errorWrapper.appendChild(errorMsg);
+				errorContainer.appendChild(errorWrapper);
+				errorHeading.focus();
+			}
+
+			document.addEventListener("DOMContentLoaded", () => {
+				window.setTimeout(initialiseLiveRegion, 50);
+			});
+		</script>
 	</body>
 </html>
