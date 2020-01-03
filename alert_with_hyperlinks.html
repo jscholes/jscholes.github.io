@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Alert with Hyperlinks</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>Alert with Hyperlinks</h1>
+		<div id="alert"></div>
+		<script>
+			window.setTimeout(() => {
+				document.getElementById("alert").innerHTML = "This is an alert.  Please <a href=\"https://example.com\">go to our other website</a>, where you will find more info.";
+				document.getElementById("alert").setAttribute('role', 'alert');
+			}, 4000);
+		</script>
+	</body>
+</html>
