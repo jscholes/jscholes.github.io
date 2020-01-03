@@ -7,15 +7,11 @@
 	<body>
 		<h1>Active Element</h1>
 			<a href="javascript:void(0);">Go Nowhere</a>
-			<div id="active" aria-live="polite" aria-atomic="true"></div>
+			<div id="active"></div>
 			<script>
-				let prev = null;
 				function communicateActiveElement() {
 					let active = document.activeElement;
-					if (active !== prev) {
-						document.getElementById("active").textContent = `<${active.tagName} ...>`;
-						active = prev;
-					}
+					document.getElementById("active").textContent = `<${active.tagName} ...>`;
 				}
 
 				setInterval(communicateActiveElement, 200);
