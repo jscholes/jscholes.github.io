@@ -9,9 +9,13 @@
 			<a href="javascript:void(0);">Go Nowhere</a>
 			<div id="active" aria-live="polite" aria-atomic="true"></div>
 			<script>
+				let prev = null;
 				function communicateActiveElement() {
 					let active = document.activeElement;
-					document.getElementById("active").textContent = `<${active.tagName} ...>`;
+					if (active !== prev) {
+						document.getElementById("active").textContent = `<${active.tagName} ...>`;
+						active = prev;
+					}
 				}
 
 				setInterval(communicateActiveElement, 200);
