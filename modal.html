@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Modal Dialog</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	</head>
+	<body>
+		<main>
+		<button id="modal-trigger" onclick="launchModal()">Launch the Modal</button>
+		<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display: none">
+			<h1 id="modal-title" tabindex="-1">Loading...</h1>
+			<p id="loading-msg">Please wait...</p>
+			<p id="loaded-msg" style="display: none">The dialog has now loaded!</p>
+			<button onclick="closeModal()">Close</button>
+		</div>
+		</main>
+		<script>
+			function launchModal() {
+				document.getElementById("modal").style.display = "block";
+				document.getElementById('modal-title').focus();
+				document.getElementById("loading-msg").style.display = "block";
+				window.setTimeout(loadModalContent, 500);
+			}
+
+			function loadModalContent() {
+				document.getElementById("modal-title").textContent = "Loaded";
+				document.getElementById("loaded-msg").style.display = "block";
+				document.getElementById("loading-msg").style.display = "none";
+			}
+
+			function closeModal() {
+				document.getElementById("modal-trigger").focus();
+				document.getElementById("modal").style.display = "none";
+				document.getElementById("modal-title").textContent = "Loading...";
+				document.getElementById("loaded-msg").style.display = "none";
+			}
+		</script>
+	</body>
+</html>
