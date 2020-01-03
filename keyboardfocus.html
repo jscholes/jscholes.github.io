@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Text Field Programmatic Focus</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>Text Field Programmatic Focus</h1>
+		<p>This page includes a text field, which automatically receives focus programmatically 2000ms after page load.</p>
+		<p>Notice that when the text field does receive focus, the on-screen keyboard is not automatically displayed.</p>
+		<form>
+			<label for="txt">Search Query</label>
+			<input id="txt" type="text">
+		</form>
+		<script>
+			window.setTimeout(() => {
+				document.getElementById('txt').focus();
+			}, 2000);
+		</script>
+	</body>
+</html>
