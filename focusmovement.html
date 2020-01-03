@@ -6,12 +6,11 @@
 	</head>
 	<body>
 		<h1>Unexpected Focus Movement</h1>
-		<p>This page includes a button and a check box, followed by a text field.</p>
-		<p>Start by double tapping on the text field, to show the on-screen keyboard.  Then, activate the button or check box.</p>
-		<p>Notice that when interaction occurs with the button or check box, the on-screen keyboard disappears and VoiceOver focus confusingly returns to the text field.  However, document.activeElement (i.e. the system focus) is undefined or on the body.</p>
+		<p>This page includes a check box, followed by a text field.</p>
+		<p>Start by double tapping on the text field, to show the on-screen keyboard.  Then, double tap the check box to toggle its value.</p>
+		<p>Notice that when interaction occurs with the check box, the on-screen keyboard disappears and VoiceOver focus confusingly returns to the text field.  However, document.activeElement (i.e. the system focus) is undefined or on the body.</p>
 		<h2>The Fields</h2>
 		<form>
-			<button>Do Nothing</button>
 			<input id="cb" type="checkbox">
 			<label for="cb">Select Something</label>
 			<label for="txt">Search Query</label>
