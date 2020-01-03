@@ -20,7 +20,7 @@
 				document.getElementById("modal").style.display = "block";
 				document.getElementById('modal-title').focus();
 				document.getElementById("loading-msg").style.display = "block";
-				window.setTimeout(loadModalContent, 200);
+				window.setTimeout(loadModalContent, 1000);
 			}
 
 			function loadModalContent() {
@@ -31,11 +31,11 @@
 			}
 
 			function closeModal() {
-				document.getElementById("modal").setAttribute("aria-label", "Loading...");
 				document.getElementById("modal-trigger").focus();
 				document.getElementById("modal").style.display = "none";
 				document.getElementById("modal-title").textContent = "Loading...";
 				document.getElementById("loaded-msg").style.display = "none";
+				document.getElementById("modal").setAttribute("aria-label", "Loading...");
 			}
 		</script>
 	</body>
