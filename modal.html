@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<main>
-		<p>Revision: 31314</p>
+		<p>Revision: 31317</p>
 		<button id="modal-trigger" onclick="launchModal()">Launch the Modal</button>
 		<div id="modal" role="dialog" aria-modal="true" aria-label="Loading..." style="display: none">
 			<h1 id="modal-title" tabindex="-1" aria-live="polite" aria-atomic="true">Loading...</h1>
@@ -21,11 +21,11 @@
 				document.getElementById("modal").style.display = "block";
 				document.getElementById('modal-title').focus();
 				document.getElementById("loading-msg").style.display = "block";
-				window.setTimeout(loadModalContent, 500);
+				window.setTimeout(loadModalContent, 300);
 			}
 
 			function loadModalContent() {
-				document.getElementById("modal").setAttribute("aria-label", "Loaded");
+				document.getElementById("modal").setAttribute("aria-label", "Loading Complete");
 				document.getElementById("modal-title").textContent = "Loaded";
 				document.getElementById("loaded-msg").style.display = "block";
 				document.getElementById("loading-msg").style.display = "none";
