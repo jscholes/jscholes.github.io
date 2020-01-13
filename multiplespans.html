@@ -3,6 +3,21 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Multiple Spans Inside Interactive Control</title>
+		<style type="text/css">
+			.sr-only {
+				border: 0 !important;
+				clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+				-webkit-clip-path: inset(50%) !important;
+				clip-path: inset(50%) !important;  /* 2 */
+				height: 1px !important;
+				margin: -1px !important;
+				overflow: hidden !important;
+				padding: 0 !important;
+				position: absolute !important;
+				width: 1px !important;
+				white-space: nowrap !important;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>Multiple Spans Inside Interactive Control</h1>
@@ -14,5 +29,22 @@
 			<span>Download</span>
 			<span>&nbsp;screenshot.jpg</span>
 		</a>
+		<a href="javascript:void(0);">
+			View 2019 Q4 Report<span>, opens in new window</span>
+		</a>
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">Su<span class="sr-only">nday</span>
+					<th scope="col">Mo<span class="sr-only">nday</span>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Test</td>
+					<td>Another Test</td>
+				</tr>
+			</tbody>
+		</table>
 	</body>
 </html>
