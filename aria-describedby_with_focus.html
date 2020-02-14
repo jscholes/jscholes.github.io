@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>aria-describedby while field has focus</title>
+	</head>
+	<body>
+		<h1>aria-describedby while field has focus</h1>
+		<label for="username">Username</label>
+		<input id="username" type="text" autofocus>
+		<div id="username-desc"></div>
+		<script>
+			function setInitialDescription() {
+				document.querySelector('#username-desc').textContent = 'Please enter your username';
+				document.querySelector('#username').setAttribute('aria-describedby', 'username-desc');
+			}
+
+			function setDifferentDescription() {
+				document.querySelector('#username-desc').textContent = 'If you need help, please contact us';
+			}
+
+			document.addEventListener("DOMContentLoaded", () => {
+				window.setTimeout(setInitialDescription, 4000);
+				window.setTimeout(setDifferentDescription, 9000);
+			});
+		</script>
+	</body>
+</html>
