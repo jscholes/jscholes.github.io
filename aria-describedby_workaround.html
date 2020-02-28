@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>aria-describedby work-around</title>
+	</head>
+	<body>
+		<h1>aria-describedby while field has focus</h1>
+		<label for="username">Username</label>
+		<input id="username" type="text" autofocus aria-describedby="username-desc">
+		<div id="username-desc" aria-live="assertive" aria-atomic="true"></div>
+		<button>Submit</button>
+		<script>
+			function onBlur(e) {
+				window.setTimeout(reattachDescription, 0);
+			}
+
+			function reattachDescription() {
+				document.querySelector('#username').setAttribute('aria-describedby', 'username-desc');
+			}
+
+			function onInput(e) {
+				e.target.removeAttribute('aria-describedby');
+				document.querySelector('#username-desc').innerHTML = `You have entered ${e.target.value.length} characters`;
+			}
+
+			document.querySelector('#username').oninput = onInput;
+			document.querySelector('#username').onblur = onBlur;
+		</script>
+	</body>
+</html>
