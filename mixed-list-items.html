@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Mixed List Item Mark-Up</title>
+	</head>
+	<body>
+		<h1>Mixed List Items</h1>
+		<p>This page uses a div with a role of "list", with the first item being a div with a role of listitem and the second and third items being standard li elements.  The second and third items are inside an ul with <pre>role="presentation"</pre>.</p>
+		<section aria-labelledby="featured">
+			<h2 id="featured">Featured Content</h2>
+			<div aria-labelledby="featured" role="list">
+				<div role="listitem">
+					<h3>The First Card</h3>
+					<p>Card 1</p>
+				</div>
+				<div id="the-listing-component">
+					<ul role="presentation" style="list-style: none">
+						<li>
+							<h3>The Second Card</h3>
+							<p>Card 2</p>
+						</li>
+						<li>
+							<h3>The Third Card</h3>
+							<p>Card 3</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>
