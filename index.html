@@ -1,24 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
+		<script src="https://use.fontawesome.com/2eb3db106e.js"></script>
 		<meta charset="utf-8">
-		<title>jscholes.github.io</title>
+		<title></title>
 	</head>
 	<body>
-		<h1>jscholes.github.io</h1>
-		<ul style="list-style: none;">
-			<li>
-				<a href="https://jscholes.github.io/aria-live-onload.html">Test: ARIA Live Region on Page Load</a>
-			</li>
-			<li>
-				<a href="https://jscholes.github.io/aria-live-onload-500.html">Test: ARIA Live Region on Page Load with 500ms timeout</a>
-			</li>
-			<li>
-				<a href="https://jscholes.github.io/aria-live-onload-700.html">Test: ARIA Live Region on Page Load with 700ms timeout</a>
-			</li>
-			<li>
-				<a href="https://jscholes.github.io/aria-live-onload-longer-timeout.html">Test: ARIA Live Region on Page Load with 2000ms Timeout</a>
-			</li>
+		<a href="/"><i class="fas fa-home"></i></a>
+		<div>Not a very accessible website</div>
+		<a href="/products" aria-label="Our Shop">Products</a>
+		<a>About</a>
+		<h5>Welcome</h5>
+		<h2>This is our not-very-accessible website.</h2>
+		<img src="/ic_play_arrow_black_36dp.png">
+		<span>Get in touch!</span>
+		<label>Name:</label>
+		<input type="text" aria-describedby="nonExistent">
+		<label for="emailAddress">Email:</label>
+		<input type="email" id="email" placeholder="Type your email address.">
+		<label for="subject">Subject (with invalid ARIA attribute):</label>
+		<input id="subject" type="text" aria-mandatory="true">
+		<label for="msg">Your message (with problematic ARIA live region mark-up):</label>
+		<textarea aria-live="assertive"></textarea>
+		<button><i class="fas fa-envelope"></i></button>
+		<ul>
+			<img src="/ic_play_arrow_black_36dp.png" alt="">
+			<li><a target="_blank" href="https://example.com">Privacy Policy</a></li>
 		</ul>
+		<footer>
+			<a href="https://twitter.com/aTwitterUser"></a>
+			<a href="https://facebook.com/aFacebookPage"></a>
+			<div>
+				<a href="https://example.com" aria-hidden="true" style="height: 0">My Super Secret, Hidden Admin Area Link</a>
+			</div>
+		</footer>
 	</body>
 </html>
