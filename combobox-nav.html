@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Combo Box Test</title>
+		<style>
+			[aria-selected="true"] {
+				font-weight: bold; 
+			}
+
+			ul {
+				list-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Combo Box Test</h1>
+		<form>
+			<label>
+				Least favorite robot
+				<input aria-controls="list-id" role="combobox" type="text">
+			</label>
+			<ul role="listbox" id="list-id" hidden>
+				<li id="baymax" role="option">Baymax</li>
+				<li id="bb-8" role="option" aria-disabled="true"><del>BB-8</del></li>
+				<li id="hubot" role="option">Hubot</li>
+				<li id="r2-d2" role="option">R2-D2</li>
+				<li role="presentation"><a id="wall-e" href="#wall-e" role="option">Wall-E</a></li>
+			</ul>
+		</form>
+		<pre class="events" aria-live="assertive"></pre>
+
+		<script type="module">
+			import Combobox from 'https://unpkg.com/@github/combobox-nav@latest/dist/index.js'
+			const input = document.querySelector('input')
+			const list = document.querySelector('ul')
+			const comboboxController = new Combobox(input, list)
+
+			function toggleList(show) {
+				const hidden = show === true ? false : input.value.length === 0
+				if (hidden) {
+					comboboxController.stop()
+				} else {
+					comboboxController.start()
+				}
+				list.hidden = hidden
+			}
+
+			input.addEventListener('keydown', event => {
+				if (!['ArrowDown', 'ArrowUp'].includes(event.key) || !list.hidden) return
+				toggleList(true)
+				comboboxController.navigate(event.key === 'ArrowDown' ? 1 : -1)
+			})
+
+			input.addEventListener('input', () => toggleList())
+			input.addEventListener('focus', () => toggleList())
+			input.addEventListener('blur', () => {
+				list.hidden = true
+				comboboxController.clearSelection()
+				comboboxController.stop()
+			})
+
+			const events = document.querySelector('.events')
+			document.addEventListener('combobox-commit', function(event) {
+				events.append(`${event.target.textContent} committed, combobox-commit event fired\n`)
+				list.hidden = true
+				comboboxController.clearSelection()
+				comboboxController.stop()
+			})
+		</script>
+	</body>
+</html>
