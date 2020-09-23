@@ -45,7 +45,8 @@ export default class Combobox {
         this.list.removeEventListener('click', commitWithElement);
     }
     navigate(indexDiff = 1) {
-        const focusEl = Array.from(this.list.querySelectorAll('[aria-checked="true"]')).filter(visible)[0];
+        const focusElId = this.input.getAttribute('aria-activedescendant');
+        const focusEl = Array.from([document.querySelector(`#${focusElId}`)]).filter(visible)[0];
         const els = Array.from(this.list.querySelectorAll('[role="option"]')).filter(visible);
         const focusIndex = els.indexOf(focusEl);
         if ((focusIndex === els.length - 1 && indexDiff === 1) || (focusIndex === 0 && indexDiff === -1)) {
@@ -65,19 +66,12 @@ export default class Combobox {
         for (const el of els) {
             if (target === el) {
                 this.input.setAttribute('aria-activedescendant', target.id);
-                target.setAttribute('aria-checked', 'true');
                 scrollTo(this.list, target);
-            }
-            else {
-                el.setAttribute('aria-checked', 'false');
             }
         }
     }
     clearSelection() {
         this.input.removeAttribute('aria-activedescendant');
-        for (const el of this.list.querySelectorAll('[aria-selected="true"]')) {
-            el.setAttribute('aria-checked', 'false');
-        }
     }
 }
 function keyboardBindings(event, combobox) {
@@ -88,6 +82,15 @@ function keyboardBindings(event, combobox) {
     if (combobox.isComposing)
         return;
     switch (event.key) {
+        case 'Space':
+            const focusElId = this.input.getAttribute('aria-activedescendant');
+            const focusEl = document.querySelector(`#${focusElId}`);
+            const checked = focusEl.getAttribute('aria-checked') == 'true';
+            if(checked) {
+                focusEl.setAttribute('aria-checked', 'false');
+            } else {
+                focusEl.setAttribute('aria-checked', 'true');
+            }
         case 'Enter':
         case 'Tab':
             if (commit(combobox.input, combobox.list)) {
