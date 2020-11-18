@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Editable Checkboxes</title>
+	</head>
+	<body>
+		<h1>Editable Checkboxes</h1>
+		<div contenteditable="true" aria-label="Editor">
+			<h2>Standalone Checkboxes</h2>
+			<h3>Label For</h3>
+			<label for="cb1">Item 1</label>
+			<input id="cb1" type="checkbox">
+			<h3>Wrapping Label</h3>
+			<label>
+				Item 1
+				<input id="cb2" type="checkbox">
+			</label>
+			<h2>Checkboxes in List Items</h2>
+			<h3>Label For</h3>
+			<ul>
+				<li>
+					<label for="cb3">Item 1</label>
+					<input id="cb3" type="checkbox">
+				</li>
+				<li>
+					<label for="cb4">Item 2</label>
+					<input id="cb4" type="checkbox">
+				</li>
+				<li>
+					<label for="cb5">Item 3</label>
+					<input id="cb5" type="checkbox">
+				</li>
+			</ul>
+			<h3>Wrapping Label</h3>
+			<ul>
+				<li>
+					<label>
+						Item 1
+						<input type="checkbox">
+					</label>
+				</li>
+				<li>
+					<label>
+						Item 2
+						<input type="checkbox">
+					</label>
+				</li>
+				<li>
+					<label>
+						Item 3
+						<input type="checkbox">
+					</label>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
