@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>ARIA Live Regions and Focus Changes</title>
+	</head>
+	<body>
+		<h1>ARIA Live Regions and Focus Changes</h1>
+		<button>Press This</button>
+		<section aria-labelledby="heading">
+			<h2 id="heading" tabindex="-1">New Place</h2>
+			<p>This is a new region.</p>
+		</section>
+		<div aria-live="polite" aria-atomic="true"></div>
+
+		<script>
+			function onPress() {
+				document.querySelector('#heading').focus();
+				document.querySelector('div').innerText = 'Moved from button';
+			}
+
+			document.querySelector('button').addEventListener('click', onPress, false);
+		</script>
+	</body>
+</html>
