@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>aria-roledescription in contenteditable node</title>
+	</head>
+	<body>
+		<h1>aria-roledescription in contenteditable node</h1>
+		<h2>Without <code>role="textbox"</code></h2>
+		<div contenteditable="true">
+			<p>Watch our <a aria-roledescription="video link" href="https://example.com">2020 Events Promo</a> to find out more.</p>
+		</div>
+		<h2>With <code>role="textbox"</code></h2>
+		<div role="textbox" aria-multiline="true" aria-label="Document" contenteditable="true">
+			<p>Watch our <a aria-roledescription="video link" href="https://example.com">2020 Events Promo</a> to find out more.</p>
+		</div>
+	</body>
+</html>
