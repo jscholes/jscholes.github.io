@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>lists in contenteditable node</title>
+	</head>
+	<body>
+		<h1>lists in contenteditable node</h1>
+		<h2>Without <code>role="textbox"</code></h2>
+		<div contenteditable="true">
+			<h3>Unordered</h3>
+			<ul>
+				<li>Item 1</li>
+				<li>Item 2</li>
+				<li>Item 3</li>
+			</ul>
+			<h3>Ordered List</h3>
+			<ol>
+				<li>A</li>
+				<li>B</li>
+				<li>C</li>
+			</ol>
+		</div>
+		<h2>With <code>role="textbox"</code></h2>
+		<div role="textbox" aria-multiline="true" aria-label="Document" contenteditable="true">
+			<h3>Unordered</h3>
+			<ul>
+				<li>Item 1</li>
+				<li>Item 2</li>
+				<li>Item 3</li>
+			</ul>
+			<h3>Ordered List</h3>
+			<ol>
+				<li>A</li>
+				<li>B</li>
+				<li>C</li>
+			</ol>
+		</div>
+	</body>
+</html>
