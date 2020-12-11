@@ -6,7 +6,12 @@
 	</head>
 	<body>
 		<h1>ARIA Live Regions and Focus Changes</h1>
-		<button>Press This</button>
+		<h2 id="btns">Buttons</h2>
+		<ul aria-labelledby="btns" style="list-style: none;">
+			<li><button>Item 1</button></li>
+			<li><button>Item 2</button></li>
+			<li><button>Item 3</button></li>
+		</ul>
 		<section aria-labelledby="heading">
 			<h2 id="heading" tabindex="-1">New Place</h2>
 			<p>This is a new region.</p>
@@ -14,12 +19,16 @@
 		<div aria-live="polite" aria-atomic="true"></div>
 
 		<script>
-			function onPress() {
-				document.querySelector('#heading').focus();
-				document.querySelector('div').innerText = 'Moved from button';
+			function onPress(e) {
+				document.querySelectorAll('button').forEach(btn => btn.setAttribute('aria-current', 'false'));
+				e.target.setAttribute('aria-current', 'true');
+				let heading = document.querySelector('#heading');
+				heading.innerText = e.target.innerText;
+				heading.focus();
+				document.querySelector('div').innerText = `Moved from ${e.target.innerText} button`;
 			}
 
-			document.querySelector('button').addEventListener('click', onPress, false);
+			document.querySelectorAll('button').forEach(btn => btn.addEventListener('click', onPress, false));
 		</script>
 	</body>
 </html>
