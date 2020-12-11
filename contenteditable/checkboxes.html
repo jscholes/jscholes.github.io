@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>checkboxes in contenteditable node</title>
+	</head>
+	<body>
+		<h1>checkboxes in contenteditable node</h1>
+		<h2>Without <code>role="textbox"</code></h2>
+		<div contenteditable="true">
+			<p>Please agree to the terms and conditions.<br>
+			<input type="checkbox" aria-label="I Agree">
+		</div>
+		<h2>With <code>role="textbox"</code></h2>
+		<div role="textbox" aria-multiline="true" aria-label="Document" contenteditable="true">
+			<p>Please agree to the terms and conditions.<br>
+			<input type="checkbox" aria-label="I Agree">
+		</div>
+	</body>
+</html>

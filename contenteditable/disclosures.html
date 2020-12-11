@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>disclosures in contenteditable node</title>
+	</head>
+	<body>
+		<h1>disclosures in contenteditable node</h1>
+		<h2>Without <code>role="textbox"</code></h2>
+		<div contenteditable="true">
+			<h3><button aria-expanded="true">First Section</button></h3>
+			<div>
+				<p>This is the content for the first section.</p>
+			</div>
+			<h3><button aria-expanded="true">Second Section</button></h3>
+			<div>
+				<p>This is the content for the second section.</p>
+			</div>
+		</div>
+		<h2>With <code>role="textbox"</code></h2>
+		<div role="textbox" aria-multiline="true" aria-label="Document" contenteditable="true">
+			<h3><button aria-expanded="true">First Section</button></h3>
+			<div>
+				<p>This is the content for the first section.</p>
+			</div>
+			<h3><button aria-expanded="true">Second Section</button></h3>
+			<div>
+				<p>This is the content for the second section.</p>
+			</div>
+		</div>
+	</body>
+</html>
