@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Link Behaviour Demo</title>
+	</head>
+	<body>
+		<h1>Link Behaviour Demo</h1>
+		<div contenteditable="true">
+			<h2>Broken Cases</h2>
+			<h3>Standard Test Case</h3>
+			<a href="https://example.com"><span>@</span><span>James Scholes</span></a>, hello.
+			<h3>Different Single Character in Span</h3>
+			<a href="https://example.com"><span>?</span><span>James Scholes</span></a>, hello.
+			<h3>With HTML Entity Instead of Explicit Character</h3>
+			<a href="https://example.com"><span>&#64;</span><span>James Scholes</span></a>, hello.
+			<h3>aria-label on Empty Span</h3>
+			<a href="https://example.com"><span aria-label="@"></span><span>James Scholes</span></a>, hello.
+			<h3>Nested Spans</h3>
+			<a href="https://example.com"><span><span>@</span></span><span>James Scholes</span></a>, hello.
+			<h3>Label Instead of Span</h3>
+			<a href="https://example.com"><label>@</label><span>James Scholes</span></a>, hello.
+			<h3>AT as Direct Child of Link (Sibling of Name Span)</h3>
+			<a href="https://example.com">@<span>James Scholes</span></a>, hello.
+			<h3>Role of Presentation on First Span</h3>
+			<a href="https://example.com"><span role="presentation">@</span><span>James Scholes</span></a>, hello.
+			<h3>Role of Presentation on Second Span</h3>
+			<a href="https://example.com"><span>@</span><span role="presentation">James Scholes</span></a>, hello.
+			<h3>Role of Presentation on Both Spans</h3>
+			<a href="https://example.com"><span role="presentation">@</span><span role="presentation">James Scholes</span></a>, hello.
+			<h3>aria-owns on Link</h3>
+			<a aria-owns="span1 span2" href="https://example.com"><span id="span1">@</span><span id="span2">James Scholes</span></a>, hello.
+			<h2>Working Cases</h2>
+			<h3>AT Inside Link</h3>
+			<a href="https://example.com"><span>@James Scholes</span></a>, hello.
+			<h3>Standard Approach with Non-Breaking Space After Symbol</h3>
+			<a href="https://example.com"><span>@&nbsp;</span><span>James Scholes</span></a>, hello.
+		</div>
+	</body>
+</html>
