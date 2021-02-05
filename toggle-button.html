@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Toggle Button</title>
+	</head>
+	<body>
+		<h1>Toggle Button</h1>
+		<button onclick="toggle()" aria-pressed="false">Mute</button>
+
+		<script>
+			function toggle() {
+				let btn = document.querySelector('button');
+				const isPressed = btn.getAttribute('aria-pressed') === 'true';
+				if(isPressed) {
+					btn.setAttribute('aria-pressed', 'false');
+				} else {
+					btn.setAttribute('aria-pressed', 'true');
+				}
+			}
+		</script>
+	</body>
+</html>
