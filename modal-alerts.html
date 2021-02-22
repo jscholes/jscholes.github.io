@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Modal Alerts</title>
+		<style>
+			ul {
+				list-style-type: none;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1 id="h1">Modal Alerts</h1>
+			<ul aria-labelledby="h1">
+				<li><button onclick="tell()">Fire an Alert</button></li>
+				<li><button onclick="ask()">Prompt for information</button></li>
+				<li><button onclick="verify()">Ask for confirmation</button></li>
+				<li><button onclick="browse()">Browse for a file</button></li>
+				<li><button onclick="save()">Save a file</button></li>
+				<li><button onclick="chooseDir()">Choose a directory</button></li>
+			</ul>
+		</main>
+
+		<script>
+			function tell() {
+				window.alert('This is a modal dialog displayed via window.alert.');
+			}
+
+			function ask() {
+				window.prompt('What would you like to tell me?', 'Nothing');
+			}
+
+			function verify() {
+				window.confirm('Are you sure?');
+			}
+
+			function browse() {
+				window.showOpenFilePicker();
+			}
+
+			function save() {
+				window.showSaveFilePicker();
+			}
+
+			function chooseDir() {
+				window.showDirectoryPicker();
+			}
+		</script>
+	</body>
+</html>
