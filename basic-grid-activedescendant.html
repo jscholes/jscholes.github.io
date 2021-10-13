@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Basic Grid with aria-activedescendant</title>
+
+		<style>
+			body {
+				font-size: 100%;
+				width: 100%;
+				height: 100%;
+			}
+
+			table {
+				margin: 1em;
+				padding: .5em;
+				border: 1px solid #000;
+			}
+
+			table:focus {
+				outline: 2px solid blue;
+			}
+
+			table thead tr {
+				background-color: lightgray;
+			}
+
+			table th {
+				padding: 1em;
+			}
+
+			table tbody tr {
+				border-bottom: 1px solid silver;
+			}
+
+			table tbody td {
+				padding: .5em;
+			}
+
+			table tbody td:hover {
+				outline: 2px dotted green;
+			}
+
+			table:focus td[data-active] {
+				outline: 2px dotted blue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1 id="page-heading">Basic Grid with aria-activedescendant</h1>
+
+		<a autofocus id="beforelink" href="#beforelink">Navigate forwards from here</a>
+
+		<table role="grid" aria-labelledby="page-heading" aria-activedescendant="column-1-cell-1" tabindex="0">
+			<tr>
+				<td id="column-1-cell-1">Hello</td>
+				<td id="column-2-cell-1">World</td>
+			</tr>
+		</table>
+
+		<a id="afterlink" href="#afterlink">Navigate backwards from here</a>
+
+		<script id="rendered-js">
+			const ARROW_LEFT = 'ArrowLeft';
+			const ARROW_RIGHT = 'ArrowRight';
+
+			const tableElement = document.querySelector('table[role="grid"]');
+
+			function onGridFocus (event) {
+				const activeDescendantId = tableElement.getAttribute('aria-activedescendant');
+				const cell = document.getElementById(activeDescendantId);
+				cell.dataset.active = '';
+			}
+
+			function isLeftmostCell (cell) {
+				return cell.parentNode.querySelector(':first-child') === cell;	
+			}
+
+			function isRightmostCell (cell) {
+				return cell.parentNode.querySelector(':last-child') === cell;	
+			}
+
+			function onGridKeyDown (event) {	
+				const activeDescendantId = tableElement.getAttribute('aria-activedescendant');
+				const cell = document.getElementById(activeDescendantId);
+
+				// valid key
+				if (![ARROW_LEFT, ARROW_RIGHT].includes(event.key)) {
+					return false;
+				}
+
+				// no modifier keys
+				if (event.metaKey || event.shiftKey || event.ctrlKey) {
+					return false;
+				}
+
+				if ((event.key === ARROW_LEFT && isLeftmostCell(cell)) || (event.key === ARROW_RIGHT && isRightmostCell(cell))) {
+					event.preventDefault();
+					event.stopPropagation(); 
+					return false;
+				}
+
+				event.preventDefault();
+				event.stopPropagation(); 
+
+				delete cell.dataset.active;
+
+				if (event.key === ARROW_LEFT) {
+					tableElement.setAttribute('aria-activedescendant', cell.previousElementSibling.id);
+					cell.previousElementSibling.dataset.active = '';
+				}
+
+				if (event.key === ARROW_RIGHT) {
+					tableElement.setAttribute('aria-activedescendant', cell.nextElementSibling.id);
+					cell.nextElementSibling.dataset.active = '';
+				}
+			}
+
+			function init () {	
+				tableElement.addEventListener('focus', onGridFocus);
+				tableElement.addEventListener('keydown', onGridKeyDown);
+			}
+
+			document.addEventListener('DOMContentLoaded', init);
+		</script>
+	</body>
+</html>
