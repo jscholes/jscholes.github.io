@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Native Dialog Element Tests</title>
+	</head>
+	<body>
+		<main>
+			<h1>Native Dialog Element Tests</h1>
+			<p>This page showcases different uses of the native dialog HTML element for testing with assistive technology.</p>
+			<h2>Example 1: Text Content Only</h2>
+			<p>This dialog contains two paragraphs, an unordered list, and a final paragraph.  It does not have an accessible name or heading, nor any buttons, and no tabindex or autofocus attributes are used.</p>
+			<button data-dialog="ex1d">Show Example 1 Non-Modal</button>
+			<button data-dialog="ex1d" data-modal>Show Example 1 Modal</button>
+			<h2>Example 2: Text Content Only with autofocus and tabindex</h2>
+			<p>This dialog contains two paragraphs, an unordered list, and a final paragraph.  It does not have an accessible name or heading, nor any buttons.  The first paragraph element has a tabindex of -1, and an autofocus attribute.</p>
+			<button data-dialog="ex2d">Show Example 2 Non-Modal</button>
+			<button data-dialog="ex2d" data-modal>Show Example 2 Modal</button>
+			<h2>Example 3: Text Content with Heading and tabindex</h2>
+			<p>This dialog contains a level 1 heading, followed by a paragraph of text.  It does not have an accessible name, nor any buttons.  The heading element has a tabindex of -1, but no autofocus attribute.</p>
+			<button data-dialog="ex3d">Show Example 3 Non-Modal</button>
+			<button data-dialog="ex3d" data-modal>Show Example 3 Modal</button>
+			<h2>Example 4: Text Content with Heading, Button and tabindex on Heading</h2>
+			<p>This dialog contains a level 1 heading, followed by a paragraph of text, and finally a "Close" button.  It does not have an accessible name.  The heading element has a tabindex of -1, but no autofocus attribute.</p>
+			<button data-dialog="ex4d">Show Example 4 Non-Modal</button>
+			<button data-dialog="ex4d" data-modal>Show Example 4 Modal</button>
+			<h2>Example 5: Text Content with Heading and Button, no tabindex</h2>
+			<p>This dialog contains a level 1 heading, followed by a paragraph of text, and finally a "Close" button.  It does not have an accessible name.  The heading element does not have a tabindex attribute, nor autofocus.  This means that the "Close" button should receive focus when the dialog opens, and screen reader users will need to navigate backwards to manually read the textual content.  However, the single paragraph should be conveyed as its accessible description.</p>
+			<button data-dialog="ex5d">Show Example 5 Non-Modal</button>
+			<button data-dialog="ex5d" data-modal>Show Example 5 Modal</button>
+			<h2>Example 6: Text Content with Heading and Button, autofocus on Heading without tabindex</h2>
+			<p>This dialog contains a level 1 heading, followed by a paragraph of text, and finally a "Close" button.  It does not have an accessible name.  The heading element does not have a tabindex attribute, but it does have autofocus set on it.  This means that the heading is not technically focusable, autofocus should therefore be ignored, and the "Close" button should receive focus when the dialog opens.</p>
+			<button data-dialog="ex6d">Show Example 6 Non-Modal</button>
+			<button data-dialog="ex6d" data-modal>Show Example 6 Modal</button>
+			<h2>Example 7: Text Content with Heading and Button, Accessible Name from Heading</h2>
+			<p>This dialog contains a level 1 heading, followed by a paragraph of text, and finally a "Close" button.  It has an accessible name via aria-labelledby applied to the dialog element, referencing the ID of the heading.  The heading element does not have a tabindex attribute, nor autofocus.  This means that the "Close" button should receive focus when the dialog opens, and screen reader users will need to navigate backwards to manually read the textual content.  However, the heading should be conveyed as the dialog's name, and the single paragraph should be conveyed as its accessible description.</p>
+			<p>Note: unless otherwise specified, all examples from this point onwards will have an accessible name via aria-labelledby referencing the level 1 heading, as well as a "Close" button.</p>
+			<button data-dialog="ex7d">Show Example 7 Non-Modal</button>
+			<button data-dialog="ex7d" data-modal>Show Example 7 Modal</button>
+			<h2>Example 8: Multi-Paragraph Text Node</h2>
+			<p>This dialog contains two paragraphs of text, wrapped inside a single div.  The aim here is to test whether the entire content of the div is conveyed as the dialog's accessible description, or only the first child paragraph.</p>
+			<button data-dialog="ex8d">Show Example 8 Non-Modal</button>
+			<button data-dialog="ex8d" data-modal>Show Example 8 Modal</button>
+			<h2>Example 9: List as Only Text Node</h2>
+			<p>This dialog contains an unordered list between the heading and button.  The aim is to test whether the textual content of that list is conveyed as the dialog's accessible description.</p>
+			<button data-dialog="ex9d">Show Example 9 Non-Modal</button>
+			<button data-dialog="ex9d" data-modal>Show Example 9 Modal</button>
+			<h2>Example 10: List as Only Text Node Inside div</h2>
+			<p>Same as example 9, but with the unordered list inside a div.</p>
+			<button data-dialog="ex10d">Show Example 10 Non-Modal</button>
+			<button data-dialog="ex10d" data-modal>Show Example 10 Modal</button>
+			<h2>Example 11: Subheading Before Text</h2>
+			<p>This dialog has a level 2 heading before a paragraph, to determine if a subheading will become the accessible description or whether the calculation will skip to the paragraph directly.</p>
+			<button data-dialog="ex11d">Show Example 11 Non-Modal</button>
+			<button data-dialog="ex11d" data-modal>Show Example 11 Modal</button>
+			<h2>Example 12: Subheading and Text in div</h2>
+			<p>Same as example 11, but with the subheading and subsection text inside a single div container.</p>
+			<button data-dialog="ex12d">Show Example 12 Non-Modal</button>
+			<button data-dialog="ex12d" data-modal>Show Example 12 Modal</button>
+			<h2>Example 13: Basic Form with Introductory Text</h2>
+			<p>This dialog has an introductory paragraph to act as the accessible description, followed by a two-field form and two buttons.</p>
+			<p>Note: examples after this point will build upon this base.</p>
+			<button data-dialog="ex13d">Show Example 13 Non-Modal</button>
+			<button data-dialog="ex13d" data-modal>Show Example 13 Modal</button>
+			<h2>Example 14: Basic Form with Top Close Button</h2>
+			<button data-dialog="ex14d">Show Example 14 Non-Modal</button>
+			<button data-dialog="ex14d" data-modal>Show Example 14 Modal</button>
+			<h2>Example 15: Basic Form with Top Close Button and autofocus on Email Field</h2>
+			<button data-dialog="ex15d">Show Example 15 Non-Modal</button>
+			<button data-dialog="ex15d" data-modal>Show Example 15 Modal</button>
+			<h2>Example 16: Basic Form with Top Close Button, autofocus on Email Field, and Custom Accessible Description Reference via aria-describedby</h2>
+			<button data-dialog="ex16d">Show Example 16 Non-Modal</button>
+			<button data-dialog="ex16d" data-modal>Show Example 16 Modal</button>
+			<h2>Example 17: Basic Form with Top Close Button, autofocus on Email Field, Custom Accessible Description Reference via aria-describedby, and Custom Focus Trap</h2>
+			<button data-dialog="ex17d">Show Example 17 Non-Modal</button>
+			<button data-dialog="ex17d" data-modal>Show Example 17 Modal</button>
+		</main>
+
+		<dialog id="ex1d">
+			<p>This is a paragraph inside a dialog.</p>
+			<p>This is another paragraph inside the same dialog.</p>
+			<ul>
+				<li>Item 1</li>
+				<li>Item 2</li>
+			</ul>
+			<p>The end.</p>
+		</dialog>
+
+		<dialog id="ex2d">
+			<p autofocus tabindex="-1">This is a paragraph inside a dialog.</p>
+			<p>This is another paragraph inside the same dialog.</p>
+			<ul>
+				<li>Item 1</li>
+				<li>Item 2</li>
+			</ul>
+			<p>The end.</p>
+		</dialog>
+
+		<dialog id="ex3d">
+			<h1 tabindex="-1">Example 3</h1>
+			<p>This is a paragraph inside a dialog.</p>
+		</dialog>
+
+		<dialog id="ex4d">
+			<h1 tabindex="-1">Example 4</h1>
+			<p>This is a paragraph inside a dialog.</p>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+		</dialog>
+
+		<dialog id="ex5d">
+			<h1>Example 5</h1>
+			<p>This is a paragraph inside a dialog.</p>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+		</dialog>
+
+		<dialog id="ex6d">
+			<h1 autofocus>Example 6</h1>
+			<p>This is a paragraph inside a dialog.</p>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+		</dialog>
+
+		<dialog id="ex7d" aria-labelledby="ex7h">
+			<h1 id="ex7h">Example 7</h1>
+			<p>This is a paragraph inside a dialog.</p>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+		</dialog>
+
+		<dialog id="ex8d" aria-labelledby="ex8h">
+			<h1 id="ex8h">Example 8</h1>
+			<div>
+				<p>This is one of two paragraphs inside this dialog, both wrapped as children of the same div.</p>
+				<p>This is the second of the two paragraphs.</p>
+			</div>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+		</dialog>
+
+		<dialog id="ex9d" aria-labelledby="ex9h">
+			<h1 id="ex9h">Example 9</h1>
+			<ul>
+				<li>This is one of two list items inside this dialog.</li>
+				<li>This is the second of the two items.</li>
+			</ul>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+		</dialog>
+
+		<dialog id="ex10d" aria-labelledby="ex10h">
+			<h1 id="ex10h">Example 10</h1>
+			<div>
+				<ul>
+					<li>This is one of two list items inside this dialog.</li>
+					<li>This is the second of the two items.</li>
+				</ul>
+			</div>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+		</dialog>
+
+		<dialog id="ex11d" aria-labelledby="ex11h">
+			<h1 id="ex11h">Example 11</h1>
+			<h2>Subsection</h2>
+			<p>Some subsection text.</p>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+		</dialog>
+
+		<dialog id="ex12d" aria-labelledby="ex12h">
+			<h1 id="ex12h">Example 12</h1>
+			<div>
+				<h2>Subsection</h2>
+				<p>Some subsection text.</p>
+			</div>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+		</dialog>
+
+		<dialog id="ex13d" aria-labelledby="ex13h">
+			<h1 id="ex13h">Log In</h1>
+			<p>Please enter your email address and password to continue.</p>
+			<form method="dialog">
+				<label for="ex13email">Email Address</label>
+				<input id="ex13email" type="email">
+				<label for="ex13password">Password</label>
+				<input id="ex13password" type="password">
+				<div>
+					<button>Log In</button>
+					<button>Cancel</button>
+				</div>
+			</form>
+		</dialog>
+
+		<dialog id="ex14d" aria-labelledby="ex14h">
+			<h1 id="ex14h">Log In</h1>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+			<p>Please enter your email address and password to continue.</p>
+			<form method="dialog">
+				<label for="ex14email">Email Address</label>
+				<input id="ex14email" type="email">
+				<label for="ex14password">Password</label>
+				<input id="ex14password" type="password">
+				<div>
+					<button>Log In</button>
+					<button>Cancel</button>
+				</div>
+			</form>
+		</dialog>
+
+		<dialog id="ex15d" aria-labelledby="ex15h">
+			<h1 id="ex15h">Log In</h1>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+			<p>Please enter your email address and password to continue.</p>
+			<form method="dialog">
+				<label for="ex15email">Email Address</label>
+				<input id="ex15email" type="email" autofocus>
+				<label for="ex15password">Password</label>
+				<input id="ex15password" type="password">
+				<div>
+					<button>Log In</button>
+					<button>Cancel</button>
+				</div>
+			</form>
+		</dialog>
+
+		<dialog id="ex16d" aria-labelledby="ex16h" aria-describedby="ex16desc">
+			<h1 id="ex16h">Log In</h1>
+			<form method="dialog">
+				<button>Close</button>
+			</form>
+			<p id="ex16desc">Please enter your email address and password to continue.</p>
+			<form method="dialog">
+				<label for="ex16email">Email Address</label>
+				<input id="ex16email" type="email" autofocus>
+				<label for="ex16password">Password</label>
+				<input id="ex16password" type="password">
+				<div>
+					<button>Log In</button>
+					<button>Cancel</button>
+				</div>
+			</form>
+		</dialog>
+
+		<dialog id="ex17d" aria-labelledby="ex17h" aria-describedby="ex17desc">
+			<span class="focus-trap" tabindex="0" aria-hidden="true" data-target="ex17cancel"></span>
+			<h1 id="ex17h">Log In</h1>
+			<form method="dialog">
+				<button id="ex17close">Close</button>
+			</form>
+			<p id="ex17desc">Please enter your email address and password to continue.</p>
+			<form method="dialog">
+				<label for="ex17email">Email Address</label>
+				<input id="ex17email" type="email" autofocus>
+				<label for="ex17password">Password</label>
+				<input id="ex17password" type="password">
+				<div>
+					<button>Log In</button>
+					<button id="ex17cancel">Cancel</button>
+				</div>
+			</form>
+			<span class="focus-trap" tabindex="0" aria-hidden="true" data-target="ex17close"></span>
+		</dialog>
+
+		<script>
+			window.addEventListener('load', init);
+
+			function init() {
+				document.querySelectorAll('button').forEach(btn => {
+					btn.addEventListener('click', showDialog);
+				});
+				document.querySelectorAll('span.focus-trap').forEach(ft => {
+					ft.addEventListener('focus', (e) => {
+						document.getElementById(e.target.dataset.target).focus();
+					});
+				});
+			}
+
+			function showDialog(e) {
+				const btn = e.target;
+				const isModal = btn.hasAttribute('data-modal');
+				const dlg = document.getElementById(btn.getAttribute('data-dialog'));
+				if (isModal) {
+					dlg.showModal();
+				} else {
+					dlg.show();
+				}
+			}
+		</script>
+	</body>
+</html>
