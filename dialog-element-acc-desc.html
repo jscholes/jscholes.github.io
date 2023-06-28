@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Native Dialog Element Accessible Description</title>
+	</head>
+	<body>
+		<main>
+			<h1>Native Dialog Element Accessible Description</h1>
+			<button data-dialog="d" data-modal>Show Example Modal</button>
+
+			<dialog id="d" aria-labelledby="h">
+				<h1 id="h">Log In</h1>
+				<p>Please enter your email address and password to continue.</p>
+				<form method="dialog">
+					<label for="email">Email Address</label>
+					<input id="email" type="email" autofocus>
+					<label for="password">Password</label>
+					<input id="password" type="password">
+					<div>
+						<button>Log In</button>
+						<button>Cancel</button>
+					</div>
+				</form>
+			</dialog>
+		</main>
+
+		<script>
+			window.addEventListener('load', init);
+
+			function init() {
+				document.querySelectorAll('button').forEach(btn => {
+					btn.addEventListener('click', showDialog);
+				});
+				document.querySelectorAll('span.focus-trap').forEach(ft => {
+					ft.addEventListener('focus', (e) => {
+						document.getElementById(e.target.dataset.target).focus();
+					});
+				});
+			}
+
+			function showDialog(e) {
+				const btn = e.target;
+				const isModal = btn.hasAttribute('data-modal');
+				const dlg = document.getElementById(btn.getAttribute('data-dialog'));
+				if (isModal) {
+					dlg.showModal();
+				} else {
+					dlg.show();
+				}
+			}
+		</script>
+	</body>
+</html>
