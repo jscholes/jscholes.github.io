@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Binary State Controls</title>
+	</head>
+	<body>
+		<h1>Binary State Controls</h1>
+		<h2>Checkbox</h2>
+		<label for="cb">
+			<input id="cb" type="checkbox">
+			Example 1
+		</label>
+		<h2>Disclosure Button</h2>
+		<button aria-expanded="false">Example 2</button>
+		<h2>Radio Button</h2>
+		<label for="radio">
+			<input id="radio" type="radio">
+			Example 3
+		</label>
+		<h2>Switch</h2>
+		<button role="switch" aria-checked="false">Example 4</button>
+		<h2>Toggle Button</h2>
+		<button aria-pressed="false">Example 5</button>
+
+		<script>
+			function init() {
+				document.querySelectorAll('button[aria-expanded]').forEach(btn => btn.addEventListener('click', event => toggleARIAControl(event.target, 'aria-expanded')));
+				document.querySelectorAll('button[aria-checked]').forEach(btn => btn.addEventListener('click', event => toggleARIAControl(event.target, 'aria-checked')));
+				document.querySelectorAll('button[aria-pressed]').forEach(btn => btn.addEventListener('click', event => toggleARIAControl(event.target, 'aria-pressed')));
+			}
+
+			function toggleARIAControl(element, attribute) {
+					const newState = element.getAttribute(attribute) === 'false' ? true : false;
+					element.setAttribute(attribute, newState.toString());
+			}
+
+			window.addEventListener('load', init);
+		</script>
+	</body>
+</html>
