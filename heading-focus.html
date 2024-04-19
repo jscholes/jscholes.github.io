@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessible Headings</title>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', function () {
+        const targetId = this.getAttribute('data-target');
+        const targetElement = document.getElementById(targetId);
+        targetElement.focus();
+      });
+    });
+
+    document.addEventListener('focus', function (event) {
+      const focusDisplay = document.getElementById('focus-display');
+      if (event.target.id) {
+        focusDisplay.textContent = 'Focused element: ' + event.target.tagName + ' (ID: ' + event.target.id + ')';
+      } else {
+        focusDisplay.textContent = 'Focused element: ' + event.target.tagName;
+      }
+    }, true); // Capture during the capturing phase
+  });
+</script>
+<style>
+  #focus-display {
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+  }
+</style>
+</head>
+<body>
+<a href="#mainContent">Skip to Main Content</a>
+<a href="#subContent">Skip to Sub Content</a>
+
+<h2 id="mainContent">Main Content</h2>
+<h3 id="subContent" tabindex="-1">Sub Content</h3>
+
+<button data-target="mainContent">Focus Main Content</button>
+<button data-target="subContent">Focus Sub Content</button>
+
+<div id="focus-display">Focused element: None</div>
+
+</body>
+</html>
