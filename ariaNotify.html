@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>ARIA Notify API Tests</title>
+	</head>
+	<body>
+		<main>
+			<h1>ARIA Notify API Tests</h1>
+			<h2>Test 1: Simple Announcement</h2>
+			<p>A screen reader announcement on the document object with no additional options. The announcement text is &quot;Hello, world!&quot;.</p>
+			<button id="test1">Test 1</button>
+
+			<h2>Test 2: Simple Announcement on Specific Element</h2>
+			<p>A screen reader announcement against the button that triggers it with no additional options. The announcement text is &quot;Hello, world!&quot;.</p>
+			<button id="test2">Test 2</button>
+
+			<h2>Test 3: Simple Announcement on Specific Element with Specific Language</h2>
+			<p>A screen reader announcement against the button that triggers it, with no additional options but a lang attribute on the button set to &quot;es&quot; for Spanish. The announcement text is &quot;¡Hola mundo!&quot;.</p>
+			<button id="test3" lang="es">Prueba 3</button>
+
+			<h2>Test 4: Multiple Consecutive Normal Priority Messages</h2>
+			<p>A &quot;Loading...&quot; message followed by a &quot;Loading failed.&quot; message, both at normal priority and fired against the document.</p>
+			<button id="test4">Test 4</button>
+
+			<h2>Test 5: Multiple Consecutive High Priority Messages</h2>
+			<p>A &quot;Loading...&quot; message followed by a &quot;Loading failed.&quot; message, both at high priority and fired against the document.</p>
+			<button id="test5">Test 5</button>
+
+			<h2>Test 6: A Normal Priority Message Followed by a High Priority Message</h2>
+			<p>A normal-priority &quot;Loading...&quot; message followed by a high-priority &quot;Loading failed.&quot; message, both fired against the document.</p>
+			<button id="test6">Test 6</button>
+
+			<h2>Test 7: A Normal Priority Message Interrupted by a High Priority Message</h2>
+			<p>A normal-priority, longer message is interrupted by a high-priority &quot;Something went wrong!&quot; message, both fired against the document. The interrupt should occur roughly two seconds into the first announcement; you may need to slow down your screen reader speech rate so that it happens while the first message is still being spoken.</p>
+			<button id="test7">Test 7</button>
+		</main>
+
+		<script>
+			window.addEventListener('load', init);
+
+			function init() {
+				const tests = [
+					{
+						id: 'test1',
+						handler: (event) => {
+							document.ariaNotify('Hello, world!');
+						},
+					},
+					{
+						id: 'test2',
+						handler: (event) => {
+							event.target.ariaNotify('Hello, world!');
+						},
+					},
+					{
+						id: 'test3',
+						handler: (event) => {
+							event.target.ariaNotify('¡Hola mundo!');
+						},
+					},
+					{
+						id: 'test4',
+						handler: (event) => {
+							document.ariaNotify('Loading...');
+							document.ariaNotify('Loading failed.');
+						},
+					},
+					{
+						id: 'test5',
+						handler: (event) => {
+							document.ariaNotify('Loading...', {'priority': 'high'});
+							document.ariaNotify('Loading failed.', {'priority': 'high'});
+						},
+					},
+					{
+						id: 'test6',
+						handler: (event) => {
+							document.ariaNotify('Loading...', {'priority': 'normal'});
+							document.ariaNotify('Loading failed.', {'priority': 'high'});
+						},
+					},
+					{
+						id: 'test7',
+						handler: (event) => {
+							document.ariaNotify('About halfway between West Egg and New York the motor road hastily joins the railroad and runs beside it for a quarter of a mile, so as to shrink away from a certain desolate area of land. This is a valley of ashes—a fantastic farm where ashes grow like wheat into ridges and hills and grotesque gardens; where ashes take the forms of houses and chimneys and rising smoke and, finally, with a transcendent effort, of ash-grey men, who move dimly and already crumbling through the powdery air.', {'priority': 'normal'});
+							window.setTimeout(() => document.ariaNotify('Something went wrong!', {'priority': 'high'}), 2000);
+						},
+					},
+				];
+
+				for (let test of tests) {
+					document.getElementById(test.id).addEventListener('click', test.handler);
+				}
+			}
+		</script>
+	</body>
+</html>
