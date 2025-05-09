@@ -93,6 +93,18 @@ const DYNAMIC_TWEAKS = [
 			el.ariaLabel = label;
 			el.tabIndex = '0';
 			el.role = 'button';
+			el.addEventListener('keydown', event => {
+				if (event.key === 'Enter') {
+					event.preventDefault();
+					el.click();
+				}
+			});
+			el.addEventListener('keyup', event => {
+				if (event.key === ' ' || event.key === 'Spacebar') {
+					event.preventDefault();
+					el.click();
+				}
+			};
 		},
 	},
 ];
