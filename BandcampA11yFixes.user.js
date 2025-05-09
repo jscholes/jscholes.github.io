@@ -5,7 +5,7 @@
 // @author         James Scholes
 // @copyright 2025 James Scholes
 // @license Mozilla Public License version 2.0
-// @version        2025.1
+// @version        2025.3
 // @include https://*.bandcamp.com/*
 // ==/UserScript==
 
@@ -93,18 +93,20 @@ const DYNAMIC_TWEAKS = [
 			el.ariaLabel = label;
 			el.tabIndex = '0';
 			el.role = 'button';
+
 			el.addEventListener('keydown', event => {
 				if (event.key === 'Enter') {
 					event.preventDefault();
 					el.click();
 				}
 			});
+
 			el.addEventListener('keyup', event => {
 				if (event.key === ' ' || event.key === 'Spacebar') {
 					event.preventDefault();
 					el.click();
 				}
-			};
+			});
 		},
 	},
 ];
